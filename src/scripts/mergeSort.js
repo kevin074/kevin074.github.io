@@ -1,15 +1,21 @@
+import * as _ from 'lodash';
+
 export function startMergeSort (bands, setBands) {
-	let splitBands = bands.map(function(band){ band.color = getRandomColor(); return [band]; });
-	while (Array.isArray(splitBands[1])) {
-		setTimeout(function(){
-			const newArray = [];
-			for (var i = 0; i < splitBands.length; i+=2) {
-				newArray.push(merge(splitBands[i], splitBands[i+1]));
-			}
-			splitBands = newArray
-		}, 500) 
+	let splitBands = !Array.isArray(bands[0]) ? 
+		bands.slice().map(function(band){ band.color = getRandomColor(); return [band]; }) : 
+		bands.slice();
+
+	const newArray = [];
+	for (var i = 0; i < splitBands.length; i+=2) {
+		newArray.push(merge(splitBands[i], splitBands[i+1]));
 	}
-	setBands(splitBands[0].slice());
+	splitBands = newArray
+
+	if( Array.isArray(splitBands[1]) ){ 
+		setBands(_.flatten(splitBands));
+		setTimeout(startMergeSort.bind(null, splitBands, setBands), 1000)  
+	}
+	else{ setBands(splitBands.slice()[0]) }
 }
 
 function merge (arrayA, arrayB){
