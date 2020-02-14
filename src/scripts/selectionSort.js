@@ -1,6 +1,7 @@
-import { isSorting, isStopSorting } from './appState';
+import { isStopSorting } from './appState';
 
 export function startSelectionSort (unsortedBands, setBands, currentIndex) {
+	if(isStopSorting.val) { isStopSorting.val = false; return; }
 	const newBands = unsortedBands.slice();
 
 	const minIndex = findMin(newBands, currentIndex);
@@ -12,12 +13,14 @@ export function startSelectionSort (unsortedBands, setBands, currentIndex) {
 		newBands[minIndex].isActive = true;
 		setBands(newBands)
 		setTimeout(function(){
+			if(isStopSorting.val) { isStopSorting.val = false; return; }
 			newBands[currentIndex] = newBands[minIndex];
 			newBands[minIndex] = holder;
 			setBands(newBands.slice())
 
 			
 			setTimeout(function(){
+				if(isStopSorting.val) { isStopSorting.val = false; return; }
 				newBands[currentIndex].isActive = false;
 				newBands[minIndex].isActive = false;
 				setBands(newBands.slice());

@@ -1,6 +1,9 @@
 import * as _ from 'lodash';
+import { isStopSorting } from './appState';
 
 export function startMergeSort (bands, setBands) {
+	if(isStopSorting.val) { isStopSorting.val = false; return; }
+
 	let splitBands = !Array.isArray(bands[0]) ? 
 		bands.slice().map(function(band){ band.color = getRandomColor(); return [band]; }) : 
 		bands.slice();
@@ -15,7 +18,9 @@ export function startMergeSort (bands, setBands) {
 		setBands(_.flatten(splitBands));
 		setTimeout(startMergeSort.bind(null, splitBands, setBands), 1000)  
 	}
-	else{ setBands(splitBands.slice()[0]) }
+	else{ 
+		setBands(splitBands.slice()[0]) 
+	}
 }
 
 function merge (arrayA, arrayB){

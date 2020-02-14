@@ -6,11 +6,18 @@ import { startMergeSort } from './mergeSort';
 
 const length = 50;
 
+function initSort (cb){
+  if(isSorting.val) { return }
+  isSorting.val = true;
+  isStopSorting.val = false;
+  cb();
+}
+
 function App() {
   const [bands, setBands] = React.useState([]);
-  const bubbleSort = startBubbleSort.bind(null, bands, setBands);
-  const selectionSort = startSelectionSort.bind(null, bands, setBands, 0);
-  const mergeSort = startMergeSort.bind(null, bands, setBands);
+  const bubbleSort = function(){    initSort(startBubbleSort.bind(null, bands, setBands)) ; }
+  const selectionSort = function(){ initSort(startSelectionSort.bind(null, bands, setBands, 0)); }
+  const mergeSort = function(){     initSort(startMergeSort.bind(null, bands, setBands)); }
 
   function setNewBands () {
     isStopSorting.val  = true;

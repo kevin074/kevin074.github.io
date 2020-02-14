@@ -1,9 +1,6 @@
-import { isSorting, isStopSorting } from './appState';
+import { isStopSorting } from './appState';
 
 export function startBubbleSort (unsortedBands, setBands){
-  if(isStopSorting.val) { isStopSorting.val = false; }
-  if(isSorting.val) { return }
-  isSorting.val = true;
   recurrSwapBand(unsortedBands.slice(), 0, {val:false}, unsortedBands.length-1, setBands);
 } 
 
@@ -15,10 +12,7 @@ function recurrSwapBand (bands, index, hasChanged, counter, setBands) {
 	  recurrSwapBand (bands, 0, hasChanged, counter-1, setBands) 
 	  return;
 	}
-	else if(index === counter && hasChanged.val){
-	  isSorting.val = false;
-	  return;
-	}
+	else if(index === counter && hasChanged.val){ return; }
 
 	const current = bands[index];
 	const next = bands[index+1];
