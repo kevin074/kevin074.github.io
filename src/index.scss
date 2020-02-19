@@ -13,10 +13,12 @@ code {
 }
 
 .bands {
-	height:5px;
+	height:15px;
 	background-color: black;
 	margin-bottom: 1px;
 	&.isActive{
 		background: green;
 	}
+  font-size: 10px;
+  color:white;
 }
