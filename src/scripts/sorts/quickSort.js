@@ -1,5 +1,5 @@
-import { quickSortStop } from './appState';
-import { getRandomColor } from './utils';
+import { quickSortStop } from '../appState';
+import { getRandomColor } from '../utils';
 
 export function startQuickSort (bands, setBands, startIndex, endIndex) {
 	if(quickSortStop.val) { return; }

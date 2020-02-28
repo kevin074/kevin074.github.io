@@ -1,4 +1,4 @@
-import { isStopSorting } from './appState';
+import { isStopSorting } from '../appState';
 
 export function startSelectionSort (unsortedBands, setBands, currentIndex) {
 	if(isStopSorting.val) { isStopSorting.val = false; return; }

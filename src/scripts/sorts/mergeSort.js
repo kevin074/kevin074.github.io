@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import { isStopSorting } from './appState';
-import { getRandomColor } from './utils';
+import { isStopSorting } from '../appState';
+import { getRandomColor } from '../utils';
 
 export function startMergeSort (bands, setBands) {
 	if(isStopSorting.val) { isStopSorting.val = false; return; }
