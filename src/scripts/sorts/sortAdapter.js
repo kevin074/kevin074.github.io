@@ -1,5 +1,5 @@
 import { startNewBubbleSort, recurrSwapBand as restartBubbleSort } from './bubbleSort';
-import { startSelectionSort } from './selectionSort';
+import { startSelectionSort, startNewSelectionSort } from './selectionSort';
 import { startMergeSort } from './mergeSort';
 import { startQuickSort } from './quickSort';
 import { isSorting, isStopSorting, quickSortStop, currentSort } from '../appState';
@@ -16,8 +16,8 @@ export const bubbleSort = function(bands, setBands){
   initSort(startNewBubbleSort.bind(null, bands, setBands)); 
 }
 export const selectionSort = function(bands, setBands){ 
-  currentSort.val = selectionSort;
-  initSort(startSelectionSort.bind(null, bands, setBands, 0)); 
+  currentSort.val = startSelectionSort;
+  initSort(startNewSelectionSort.bind(null, bands, setBands, 0)); 
 }
 export const mergeSort = function(bands, setBands){     
   currentSort.val = mergeSort;

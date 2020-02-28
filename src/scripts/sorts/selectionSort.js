@@ -1,6 +1,13 @@
 import { isStopSorting } from '../appState';
 
-export function startSelectionSort (unsortedBands, setBands, currentIndex) {
+let currentIndex= 0;
+
+export function startNewSelectionSort(unsortedBands, setBands){
+	currentIndex = 0;
+	startSelectionSort (unsortedBands, setBands);
+}
+
+export function startSelectionSort (unsortedBands, setBands) {
 	if(isStopSorting.val) { isStopSorting.val = false; return; }
 	const newBands = unsortedBands.slice();
 
@@ -13,19 +20,19 @@ export function startSelectionSort (unsortedBands, setBands, currentIndex) {
 		newBands[minIndex].isActive = true;
 		setBands(newBands)
 		setTimeout(function(){
-			if(isStopSorting.val) { isStopSorting.val = false; return; }
 			newBands[currentIndex] = newBands[minIndex];
 			newBands[minIndex] = holder;
 			setBands(newBands.slice())
-
+			if(isStopSorting.val) { isStopSorting.val = false; return; }
 			
 			setTimeout(function(){
-				if(isStopSorting.val) { isStopSorting.val = false; return; }
 				newBands[currentIndex].isActive = false;
 				newBands[minIndex].isActive = false;
 				setBands(newBands.slice());
 
-				startSelectionSort(newBands, setBands, currentIndex+1)
+				if(isStopSorting.val) { isStopSorting.val = false; return; }
+
+				startSelectionSort(newBands, setBands, ++currentIndex)
 			}, 100)
 		}, 50)
 	}

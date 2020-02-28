@@ -12,6 +12,8 @@ const pauseSort = function(){
 }
 
 const continueSort = function(bands, setBands){
+    if(!isStopSorting.val) { return }
+      
     isStopSorting.val  = false;
     isSorting.val = true;
     quickSortStop.val = false;
