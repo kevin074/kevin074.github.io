@@ -19,7 +19,8 @@ export const selectionSort = function(bands, setBands){
   currentSort.val = startSelectionSort;
   initSort(startNewSelectionSort.bind(null, bands, setBands, 0)); 
 }
-export const mergeSort = function(bands, setBands){     
+export const mergeSort = function(bands, setBands){ 
+  console.log('?????')
   currentSort.val = mergeSort;
   initSort(startMergeSort.bind(null, bands, setBands)); 
 }

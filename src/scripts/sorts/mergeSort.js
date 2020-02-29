@@ -3,7 +3,7 @@ import { isStopSorting } from '../appState';
 import { getRandomColor } from '../utils';
 
 export function startMergeSort (bands, setBands) {
-	if(isStopSorting.val) { isStopSorting.val = false; return; }
+	if(isStopSorting.val) { return; }
 
 	let splitBands = !Array.isArray(bands[0]) ? 
 		bands.slice().map(function(band){ band.color = getRandomColor(); return [band]; }) : 

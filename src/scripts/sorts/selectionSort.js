@@ -8,7 +8,7 @@ export function startNewSelectionSort(unsortedBands, setBands){
 }
 
 export function startSelectionSort (unsortedBands, setBands) {
-	if(isStopSorting.val) { isStopSorting.val = false; return; }
+	if(isStopSorting.val) { return; }
 	const newBands = unsortedBands.slice();
 
 	const minIndex = findMin(newBands, currentIndex);
@@ -23,14 +23,14 @@ export function startSelectionSort (unsortedBands, setBands) {
 			newBands[currentIndex] = newBands[minIndex];
 			newBands[minIndex] = holder;
 			setBands(newBands.slice())
-			if(isStopSorting.val) { isStopSorting.val = false; return; }
+			if(isStopSorting.val) { return; }
 			
 			setTimeout(function(){
 				newBands[currentIndex].isActive = false;
 				newBands[minIndex].isActive = false;
 				setBands(newBands.slice());
 
-				if(isStopSorting.val) { isStopSorting.val = false; return; }
+				if(isStopSorting.val) { return; }
 
 				startSelectionSort(newBands, setBands, ++currentIndex)
 			}, 100)

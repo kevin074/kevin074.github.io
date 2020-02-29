@@ -12,7 +12,7 @@ export function startNewBubbleSort (unsortedBands, setBands){
 } 
 
 export function recurrSwapBand (bands, setBands) {
-	if (isStopSorting.val) { isStopSorting.val = false; return; }
+	if (isStopSorting.val) { return; }
 
 	if (index === counter && hasChanged.val) {
 	  hasChanged.val = false;

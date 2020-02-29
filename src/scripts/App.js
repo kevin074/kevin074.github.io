@@ -6,18 +6,18 @@ import { bubbleSort, selectionSort, mergeSort, quickSort } from './sorts/sortAda
 const length = 50;
 
 const pauseSort = function(){
-    isStopSorting.val  = true;
-    isSorting.val = false;
-    quickSortStop.val = true;
+  isStopSorting.val  = true;
+  isSorting.val = false;
+  quickSortStop.val = true;
 }
 
 const continueSort = function(bands, setBands){
-    if(!isStopSorting.val) { return }
-      
-    isStopSorting.val  = false;
-    isSorting.val = true;
-    quickSortStop.val = false;
-    currentSort.val(bands, setBands)
+  console.log('huh?')
+  if(!isStopSorting.val) { console.log('?'); return }
+
+  isStopSorting.val  = false;
+  quickSortStop.val = false;
+  currentSort.val(bands, setBands)
 }
 
 function setNewBands (setBands) {
