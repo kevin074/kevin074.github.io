@@ -1,19 +1,18 @@
 import React from 'react';
-import { isSorting, isStopSorting, quickSortStop, currentSort } from './appState';
+import { isSorting, isStopSorting, quickSortStop, currentSort, isNewBands } from './appState';
 import { bubbleSort, selectionSort, mergeSort, quickSort } from './sorts/sortAdapter';
 // import { mockBands } from './mockData/mockBands';
 
 const length = 50;
 
 const pauseSort = function(){
-  console.log('?')
   isStopSorting.val  = true;
   isSorting.val = false;
   quickSortStop.val = true;
 }
 
 const continueSort = function(bands, setBands){
-  if(!isStopSorting.val) { console.log('?'); return }
+  if(!isStopSorting.val || !currentSort.val) { return }
 
   isStopSorting.val  = false;
   quickSortStop.val = false;
@@ -22,6 +21,7 @@ const continueSort = function(bands, setBands){
 
 function setNewBands (setBands) {
   pauseSort()
+  isNewBands.val = true;
   setBands( Array.from({length:length})
     .map(function(){ return { 
         val:Math.floor(Math.random() * length*10), 

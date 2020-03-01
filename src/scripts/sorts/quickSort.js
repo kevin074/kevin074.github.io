@@ -1,17 +1,7 @@
-import { quickSortStop } from '../appState';
+import { quickSortStop, isNewBands } from '../appState';
 import { getRandomColor } from '../utils';
 
-function clearBands (bands, setBands){
-	setBands(bands.slice().map(function(band){
-		band.isActive = null;
-		band.index = '';
-		band.color = null;
-		return band
-	}));
-}
-
 export function startQuickSort (bands, setBands, startIndex, endIndex) {
-	if(quickSortStop.val) { clearBands(bands, setBands); return; }
 	if(startIndex >= endIndex) { return; }
 
 	const pivotIndex = getRandomInt(startIndex, endIndex)
@@ -47,8 +37,20 @@ export function startQuickSort (bands, setBands, startIndex, endIndex) {
 	}
 	setBands(bands.slice());
 
-	setTimeout(function(){
-		if(quickSortStop.val) { clearBands(bands, setBands); return; }
+	const timeOut = setTimeout(function(){
+
+		if(quickSortStop.val) { 
+			if(!isNewBands.val) {
+				setBands(bands.slice().map(function(band){
+					band.isActive = null;
+					band.index = '';
+					band.color = null;
+					return band
+				}));
+			} 
+
+			return 
+		}
 
 		bands[startIndex].color = null;
 		bands[endIndex].color = null;
