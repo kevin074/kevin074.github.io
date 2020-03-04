@@ -1,5 +1,5 @@
 import { quickSortStop, isNewBands } from '../appState';
-import { getRandomColor } from '../utils';
+import { getRandomColor, getRandomInt } from '../utils';
 
 export function startQuickSort (bands, setBands, startIndex, endIndex) {
 	if(startIndex >= endIndex) { return; }
@@ -70,12 +70,6 @@ export function startQuickSort (bands, setBands, startIndex, endIndex) {
 		}
 	}, 1000);
 }	
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 function swap (array, indexA, indexB) {
 	const objA = array[indexA];
