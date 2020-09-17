@@ -1,5 +1,12 @@
 import { unitXYinfo, DotsProps, DotProps, PointObject, PointMap } from './boardTStypes';
 
+export function getXPosition (unitX:number, index:number):string {
+	return unitX * index - 10 + 'px'
+}
+export function getYPosition (unitY:number, index:number):string {
+	return unitY * index - 10 + 'px'
+}
+
 export function getNeighbors (id:string):string[] {
 	const colI = id.indexOf('col');
 	const i = parseInt(id.substring(3, colI));
@@ -60,14 +67,14 @@ export function countLives ( id:string, pointMap:PointMap ) {
 	let shiftDot = null;
 	const visited: {[key:string]: boolean} = {[id]: true};
 	let pointColor:null|"black"|"white" = null;
-	if(id === "row0col0") {console.log("count")}
+	
 	while (idShifted) {
 		visited[idShifted] = true;
 		pointColor = pointMap.readMap(idShifted, "color")
 		
 		if( pointColor && pointColor !== idColor) { //color has null case
 			pointMap.removeMapLive(idShifted, id)
-			if(id === "row0col0") { console.log(idShifted, pointMap.readMap(idShifted, "lives"))}
+			
 			if(Object.keys(pointMap.readMap(idShifted, "lives")).length === 0) {
 				removeAndReAddLivesRecurr(idShifted, {}, pointMap)
 			}

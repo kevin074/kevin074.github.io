@@ -1,8 +1,11 @@
 import React from 'react';
 import Board from './board/board'
-import {BoardContext} from './goContext'
-import { pointMap } from './board/dots';
+import { BoardContext } from './goContext'
+import { pointMap } from './board/initBoard';
 import { countEndGame } from './goViewController';
+import Modal from '@material-ui/core/Modal';
+import RulesModal from './rulesModal/rulesModal';
+
 
 //rules of the game:
 // 1.) a dot has 4 lives, up down, left right of spaces unoccupied. 
@@ -21,8 +24,9 @@ import { countEndGame } from './goViewController';
 export default function () {
 	const [dotColor, setDotColor] = React.useState<'black'|'white'>('black');
 	const [winner, setWinner] = React.useState<null|'black'|'white'>(null);
-	const [blacksRemoved, setBlacksRemoved] = React.useState<number>(0)
-	const [whitesRemoved, setWhitesRemoved] = React.useState<number>(0)
+	const [blacksRemoved, setBlacksRemoved] = React.useState<number>(0);
+	const [whitesRemoved, setWhitesRemoved] = React.useState<number>(0);
+	const [isRulesOpen, setIsRulesOpen] = React.useState<boolean>(false);
 
 	function toggleDotColor () { setDotColor( dotColor === 'black' ? 'white': 'black' ) }
 
@@ -40,6 +44,9 @@ export default function () {
 			<div>whites: {whitesRemoved}</div>
 
 			<button onClick={countEndGame.bind(null, pointMap, setWinner, blacksRemoved, whitesRemoved)}> End </button>
+			<button type="button" onClick={setIsRulesOpen.bind(null, true)}> See Modal</button>
+			<RulesModal open={isRulesOpen} onclose={setIsRulesOpen.bind(null, false)}/>
+
 			<Board />
 		</div>
 	</ BoardContext.Provider> )

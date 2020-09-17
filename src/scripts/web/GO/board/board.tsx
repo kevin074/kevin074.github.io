@@ -26,7 +26,7 @@ export default function () {
 	}, [myRef])
 
 	return <div style={{width:"100%", height:"100%"}} onMouseMove={mouseMove} >
-			<div style={{margin:"0 auto", width:"800px", height: '800px', position:"relative"}} ref={myRef}>
+			<div style={{margin:"0 auto", width:"720px", height: '720px', position:"relative"}} ref={myRef}>
 				<Goban unitXYinfo={unitXYinfo} />
 				<Dots  unitXYinfo={unitXYinfo} />
 			</div>
@@ -34,15 +34,23 @@ export default function () {
 }
 
 function setBoardConfigs (myRef:{current:HTMLDivElement}, setUnitXYinfo:any) { 
-	parentWidth = myRef.current.offsetWidth;
-	parentHeight = myRef.current.offsetHeight;
-
-	topOffset = myRef.current.offsetTop;
-	const unitX = roundTo2(parentWidth  * 0.05);
-	const unitY = roundTo2(parentHeight * 0.05);
-	
-	setUnitXYinfo({unitX, unitY, topOffset})
+	setUnitXYinfo({
+		topOffset: myRef.current.offsetTop,
+		...getUnityXY(
+			myRef.current.offsetWidth, 
+			myRef.current.offsetHeight, 
+			1/18
+		)
+	})
 }
+
+export function getUnityXY (width:number, height:number, factor:number){
+	// factor is determined by 1 over how many squares
+	return {
+		unitX: roundTo2(width * factor),
+		unitY: roundTo2(width * factor)
+	}
+} 
 
 function roundTo2 (float:number) {
 	const rounded = (Math.round(float * 100) / 100).toFixed(2)
