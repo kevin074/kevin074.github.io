@@ -11,16 +11,19 @@ const boardSize = 200
 const {unitX, unitY} = getUnityXY(boardSize, boardSize, 1/cellNumber);
 
 const rule1:DotDataType[] = [
-	dotData(2,2,"black",""),
-	dotData(1,2,"trans","1"),
-	dotData(2,1,"trans","2"),
-	dotData(3,2,"trans","3"),
-	dotData(2,3,"trans","4"),
+	dotData(0,0,"black",""),
+	dotData(0,1,"trans","2"),
+	dotData(1,0,"trans","1"),
+
+	dotData(0,3,"black",""),
+	dotData(1,3,"trans","2"),
+	dotData(0,2,"trans","1"),
+	dotData(0,4,"trans","3"),
 ];
 
 export default function () {
 	return <div style={{flexDirection:"column", ...FlexCenter}}>
-		<h1 style={RuleHeaderStyle}> 1.) Each dot has 4 lives: (up down, left, right) of spaces unoccupied </h1>
+		<h1 style={RuleHeaderStyle}> 2.) Corner and side dots don't have 4 lives accordingly </h1>
 		<div style={{width:boardSize+"px", height:boardSize+"px", position:"relative"}}>
 			<MakeBoard unitX={unitX} unitY={unitY} boardSize={cellNumber}/>
 			{ rule1.map(function(dotData:DotDataType){ return <Dot unitX={unitX} unitY={unitY} data={dotData}/> })}
