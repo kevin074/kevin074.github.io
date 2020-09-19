@@ -8,14 +8,12 @@ import { RuleHeaderStyle } from './rules1'
 
 import EjectIcon from '@material-ui/icons/Eject';
 
-import "./rulesAnimation.scss"
-
 const cellNumber = 4;
 const boardSize = 200
 const {unitX, unitY} = getUnityXY(boardSize, boardSize, 1/cellNumber);
 
 const rule1:DotDataType[] = [
-	dotData(2,2,"black",""),
+	dotData(2,2,"black","","fadeOutLate"),
 	dotData(2,1,"white",""),
 	dotData(3,2,"white",""),
 	dotData(2,3,"white","","fadeInOut"),
@@ -28,7 +26,14 @@ export default function () {
 		<div style={{width:boardSize+"px", height:boardSize+"px", position:"relative"}}>
 			<MakeBoard unitX={unitX} unitY={unitY} boardSize={cellNumber}/>
 			{ rule1.map(function(dotData:DotDataType){ return <Dot unitX={unitX} unitY={unitY} data={dotData}/> })}
-			<EjectIcon className="fadeInOut"/>
+			<EjectIcon className="fadeInOut" style={EjectIconStyle}/>
 		</div>
 	</div>
+}
+
+export const EjectIconStyle = {
+	top: unitY*3+10+"px",
+	left:unitX*2+"px",
+    transform: "translate(-50%)",
+    position:"absolute" as "absolute"
 }

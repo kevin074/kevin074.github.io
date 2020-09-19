@@ -15,6 +15,7 @@ import Rules7 from './rules7';
 import Rules8 from './rules8';
 import Rules9 from './rules9';
 import Rules10 from './rules10';
+import "./rulesAnimation.scss" //for the rules
 
 
 
@@ -47,7 +48,6 @@ function Body ( {open} : {open:boolean} ) {
 				<Rules8 /> 
 				<Rules9 />
 				<Rules10 /> 
- 
           </div></Fade>
 }
 

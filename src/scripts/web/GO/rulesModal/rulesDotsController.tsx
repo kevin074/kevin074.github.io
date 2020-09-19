@@ -17,6 +17,7 @@ export function dotData (x:number,y:number, color:"black"|"white"|"trans", word:
 
 export function Dot ( {unitX, unitY, data} : {unitX:number,unitY:number,data:DotDataType} ) {
 	return <div className={data.className}
+		
 				style={dotStyle(
 				getXPosition(unitX, data.x),
 				getYPosition(unitY, data.y),
