@@ -7,18 +7,20 @@ export type DotDataType = {
 	x:number,
 	y:number, 
 	color:"black"|"white"|"trans", 
-	word:string	
+	word:string,
+	className?:string|undefined,
 }
 
-export function dotData (x:number,y:number, color:"black"|"white"|"trans", word:string):DotDataType {
-	return { x,y,color,word }
+export function dotData (x:number,y:number, color:"black"|"white"|"trans", word:string, className?:string|undefined):DotDataType {
+	return { x,y,color,word,className}
 } 
 
-export function Dot ({unitX, unitY, data}:{unitX:number,unitY:number,data:DotDataType}) {
-	return <div style={dotStyle(
+export function Dot ( {unitX, unitY, data} : {unitX:number,unitY:number,data:DotDataType} ) {
+	return <div className={data.className}
+				style={dotStyle(
 				getXPosition(unitX, data.x),
 				getYPosition(unitY, data.y),
-				data.color
+				data.color,
 				)}>
 				{data.word}		
 			</div>
@@ -36,7 +38,7 @@ export function Dot ({unitX, unitY, data}:{unitX:number,unitY:number,data:DotDat
 			height:"20px",
 			borderRadius:"20px",
 			textAlign:"center" as "center",
-			...colors
+			...colors,
 		}
 	}
 }

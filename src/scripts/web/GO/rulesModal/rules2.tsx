@@ -4,7 +4,7 @@ import { MakeBoard } from '../board/goban';
 import { DotDataType, dotData, Dot } from './rulesDotsController';
 import { getUnityXY } from '../board/board';
 import { FlexCenter } from '../../../css/commonCss';
-
+import { RuleHeaderStyle } from './rules1'
 
 const cellNumber = 4;
 const boardSize = 200
@@ -29,9 +29,4 @@ export default function () {
 			{ rule1.map(function(dotData:DotDataType){ return <Dot unitX={unitX} unitY={unitY} data={dotData}/> })}
 		</div>
 	</div>
-}
-
-
-const RuleHeaderStyle = {
-	fontSize: "20px",
 }

@@ -28,7 +28,8 @@ export default function () {
 	</div>
 }
 
-
-const RuleHeaderStyle = {
+export const RuleHeaderStyle = {
 	fontSize: "20px",
+    padding: "0 30px",
+    textAlign:"center" as "center",
 }

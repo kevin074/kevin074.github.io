@@ -11,6 +11,12 @@ import Rules3 from './rules3';
 import Rules4 from './rules4';
 import Rules5 from './rules5';
 import Rules6 from './rules6';
+import Rules7 from './rules7';
+import Rules8 from './rules8';
+import Rules9 from './rules9';
+import Rules10 from './rules10';
+
+
 
 export default function ({open, onclose} : {open:boolean, onclose:any}) {
 	return <Modal
@@ -36,7 +42,12 @@ function Body ( {open} : {open:boolean} ) {
 				<Rules3 />
 				<Rules4 /> 
 				<Rules5 />
-				<Rules6 /> 
+				<Rules6 />
+				<Rules7 />
+				<Rules8 /> 
+				<Rules9 />
+				<Rules10 /> 
+ 
           </div></Fade>
 }
 
@@ -66,7 +77,6 @@ const ModalContainerStyle = {
 // 5.) one cannot place a dot that is 0 life immediately, doing so loses the game 
 // 6.) exception for #5 is if placing the dot makes the opposing colored dot life goes to 0, the color just placed takes precedence.
 // 7.) a dot can extend its life by placing another same color dot next to it. 
-// 		caveat is that connected dots share the lives spaces unoccupied, so it won't be 4+4, but 3+3 lives.
 // 8.) if connected dots goes to life 0, all of them is removed together.
 // 9.) the game ends when there is no uncontested empty space left in the game 
 // 10.) the winner is the one that have more [# pieces on the board - # pieces taken offboard].

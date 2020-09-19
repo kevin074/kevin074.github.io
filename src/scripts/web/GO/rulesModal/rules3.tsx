@@ -4,7 +4,7 @@ import { MakeBoard } from '../board/goban';
 import { DotDataType, dotData, Dot } from './rulesDotsController';
 import { getUnityXY } from '../board/board';
 import { FlexCenter } from '../../../css/commonCss';
-
+import { RuleHeaderStyle } from './rules1'
 
 const cellNumber = 4;
 const boardSize = 200
@@ -32,7 +32,3 @@ export default function () {
 	</div>
 }
 
-
-const RuleHeaderStyle = {
-	fontSize: "20px",
-}
