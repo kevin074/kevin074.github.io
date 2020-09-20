@@ -23,11 +23,9 @@ function toDisplayValue (string:string) {
 }
 
 export default () => { 
-	const [appBarValue, setAppBarValue] = React.useState(GO);
+	const [appBarValue, setAppBarValue] = React.useState(HOME);
 
 	function setNewAppbarValue(event:React.ChangeEvent<HTMLElement>, value:string) {
-		console.log(event.target.innerText)
-		console.log(event.target.innerText.split(" ").join("_").toLowerCase())
 		setAppBarValue(event.target.innerText.split(" ").join("_").toLowerCase())
 	};
 

@@ -94,7 +94,7 @@ function Dot(props:DotProps) {
 			onMouseEnter={setIsHovered.bind(null, true)}
 			onMouseLeave={setIsHovered.bind(null, false)}
 			onClick={dotClicked.bind(null, id, null)}>
-			{ Object.keys(pointMap.readMap(id,"lives")).length }
+			{ /*Object.keys(pointMap.readMap(id,"lives")).length*/ }
 		</div> 
 };
 
