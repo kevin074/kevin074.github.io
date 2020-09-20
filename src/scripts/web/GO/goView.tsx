@@ -5,6 +5,7 @@ import { pointMap } from './board/initBoard';
 import { countEndGame } from './goViewController';
 import Modal from '@material-ui/core/Modal';
 import RulesModal from './rulesModal/rulesModal';
+import CodeExpModal from './codeExplain/codeExplainModal'
 
 
 //rules of the game:
@@ -27,6 +28,7 @@ export default function () {
 	const [blacksRemoved, setBlacksRemoved] = React.useState<number>(0);
 	const [whitesRemoved, setWhitesRemoved] = React.useState<number>(0);
 	const [isRulesOpen, setIsRulesOpen] = React.useState<boolean>(false);
+	const [isCodeExpOpen, setisCodeExpOpen] = React.useState<boolean>(false);
 
 	function toggleDotColor () { setDotColor( dotColor === 'black' ? 'white': 'black' ) }
 
@@ -44,8 +46,11 @@ export default function () {
 			<div>whites: {whitesRemoved}</div>
 
 			<button onClick={countEndGame.bind(null, pointMap, setWinner, blacksRemoved, whitesRemoved)}> End </button>
-			<button type="button" onClick={setIsRulesOpen.bind(null, true)}> See Modal</button>
+			<button type="button" onClick={setIsRulesOpen.bind(null, true)}> Rules</button>
 			<RulesModal open={isRulesOpen} onclose={setIsRulesOpen.bind(null, false)}/>
+
+			<button type="button" onClick={setisCodeExpOpen.bind(null, true)}> Code Explain </button>
+			<CodeExpModal open={isCodeExpOpen} onclose={setisCodeExpOpen.bind(null, false)}/>
 
 			<Board />
 		</div>
