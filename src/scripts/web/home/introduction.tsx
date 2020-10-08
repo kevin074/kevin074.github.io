@@ -10,31 +10,72 @@ import {Link} from '@material-ui/core';
 import DescriptionIcon from '@material-ui/icons/Description';
 import EmailIcon from '@material-ui/icons/Email';
 
-export default function () {
-	return <div>
-		<Avatar alt="profile" src={ProfilePic} style={{width:"100px", height: "100px", marginTop: "60px", marginLeft: "20px" }}/>
-		<Link 
-			variant="body2"
-			target="_blank"
-			rel="noreferrer"
-			href="https://docs.google.com/document/d/1E-UWbVjpd_JZqTFcSvqRHecnXkh4fecWvnRWhsI4xaY/edit?usp=sharing"> 
-				<DescriptionIcon />
-				Resume 
-		</Link>
-		<Link 
-			variant="body2"
-			target="_blank"
-			rel="noreferrer"
-			href="mailto:kevin074@gmail.com"> 
-				<EmailIcon />
-				Email 
-		</Link>
+import {primaryColorBlue} from '../../css/commonCss'
 
-		<Card style={{width:"60%", margin:"50px auto"}}><CardContent>
-			<div>{ IntroText() }</div>
-		</CardContent></Card>
+export default function () {
+	return <div style={{display:"flex", flexDirection:"column"}}>
+
+		<section className="firstContainer" style={firstContainerStyle}>
+			<div className="introGreet" style={{ padding: "0 5vw", ...marginCenterVertical }}>
+				<div style={{fontSize:"4vw", marginBottom: "5vh"}}>Hey!</div>
+				<div style={{fontSize:"6vw"}}> I'm Kevin, a Frontend Developer from LA</div>
+			</div>
+		</section>
+
+		<section className="secondContainer" style={secondContainerStyle}>
+			<div className="introCol1" style={{flexBasis:"25vw"}}>
+
+				<Avatar alt="profile" src={ProfilePic} style={{width:"200px", height: "200px", borderRadius:0}}/> 
+
+				<div>
+					Experience - 
+					<Link 
+						variant="body2"
+						target="_blank"
+						rel="noreferrer"
+						href="https://docs.google.com/document/d/1E-UWbVjpd_JZqTFcSvqRHecnXkh4fecWvnRWhsI4xaY/edit?usp=sharing"> 
+							Resume 
+					</Link>
+				</div>
+				<div>
+					Get In Touch -
+					<Link 
+						variant="body2"
+						target="_blank"
+						rel="noreferrer"
+						href="mailto:kevin074@gmail.com"> 
+							Email 
+					</Link>
+				</div>
+			</div>
+			<div className="introCol2" style={{flexBasis:"45vw"}}>
+				<Card style={{boxShadow:"none"}}><CardContent>
+					<div>{ IntroText() }</div>
+				</CardContent></Card>
+			</div>
+		</section>
+
+		<section className="thirdContainer">
+			footer
+		</section>
+
 	</div>
 }
+const marginCenterVertical = { marginTop: "-25vh" }
+const sections = { height:"100vh" }
+const firstContainerStyle = Object.assign( {}, sections, {
+	background:primaryColorBlue, 
+	color:"white",
+	display:"flex",
+    justifyContent: "center",
+    alignItems: "center",
+})
+
+const secondContainerStyle = Object.assign( {}, sections, {
+	display:"flex",
+	justifyContent: "center",
+    alignItems: "center",
+})
 
 function IntroText () {
 	return IntroString.split('\n').map(function(string:string, index:number){

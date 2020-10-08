@@ -7,10 +7,11 @@ import Introductions from './home/introduction';
 import ArticleDisplay from './articles/aricleDisplay'
 import WorksView from './sampleWorks/worksView'
 import GOView from './GO/goView';
+import {primaryColorBlue} from '../css/commonCss'
 
 const HOME = 'home';
-const ARTICLE = 'article';
-const SAMPLE_WORKS = 'sample_works';
+const ARTICLE = 'articles';
+const SAMPLE_WORKS = 'sort_algos';
 const GO = 'go_(board_game)';
 
 const pageOrder = [HOME, ARTICLE, SAMPLE_WORKS, GO]
@@ -24,19 +25,26 @@ function toDisplayValue (string:string) {
 
 export default () => { 
 	const [appBarValue, setAppBarValue] = React.useState(HOME);
-
+	
+	function returnHome () { setAppBarValue(HOME) }
+	
 	function setNewAppbarValue(event:React.ChangeEvent<HTMLElement>, value:string) {
 		setAppBarValue(event.target.innerText.split(" ").join("_").toLowerCase())
 	};
 
 	return <Box className="webViewContainer" style={{width:"100%", height:"100%"}}>
-		<AppBar className="header" >
-			<Tabs value={pageOrder.indexOf(appBarValue)} onChange={setNewAppbarValue}> 
-				{pageOrder.map(function(page){
+		<AppBar className="header" style={headerStyle}>
+
+			<span style={homeStyle} onClick={returnHome}> KEVIN TSENG </span>
+
+			<Tabs value={pageOrder.indexOf(appBarValue)-1} onChange={setNewAppbarValue} style={tabsStyle}> 
+				{pageOrder.map(function(page, index){
+					if(index ===0 ) return null
 					return <Tab key={page} label={toDisplayValue(page)} />	
 				})}
 			</Tabs>
-		</AppBar>;
+
+		</AppBar>
 
 
 		<main style={mainStyle}>
@@ -56,7 +64,24 @@ function MainView (props:{appBarValue:string}) {
 	return  <Introductions />
 }
 
+const headerStyle ={
+	flexDirection: "row", 
+	justifyContent: "space-between", 
+	background:primaryColorBlue, 
+	boxShadow: "none"
+}
+const homeStyle = {
+	marginLeft: "30px", 
+	lineHeight:"51px", 
+	cursor:"pointer",
+	fontWeight:"bold",
+}
+
 const mainStyle = {
-	marginTop:"50px",
-	height: "calc(100% - 50px)"
+	marginTop:"51px"
+}
+
+const tabsStyle = {
+	display:'inline-block',
+	marginRight: "30px"
 }
