@@ -4,8 +4,8 @@ export const FlexCenter = {
 	justifyContent: 'center',
 }
 
-export const primaryColorBlue = "#26263D"
-export const primaryColorGrey = "#707070"
-export const secondaryLightGrey = "#8C949C"
-export const secondaryDarkGrey = "#EDEDED"
+export const primaryColorBlue   = "#26263D"
+export const primaryColorGrey   = "#707070"
+export const secondaryDarkGrey  = "#8C949C"
+export const secondaryLightGrey = "#EDEDED"
 
