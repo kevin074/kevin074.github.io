@@ -91,8 +91,6 @@ function createPointMap (map:{[key:string]:PointObject}) {
 		countLiveInMock(id, visited, mapClass);
 	});
 
-	console.log(map)
-
 	return mapClass
 
 }

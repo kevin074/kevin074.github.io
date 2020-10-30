@@ -75,7 +75,7 @@ export default function () {
 		})
 	}, []);
 
-	return <div style={{background:primaryColorBlue, position:"relative"}}>
+	return <div style={{position:"relative"}}>
 		<Button aria-controls="customized-menu" aria-haspopup="true" variant="contained" style={MenuButtonStyle} onClick={openTitleMenu}>
 			Read Others
 		</Button>
@@ -106,30 +106,36 @@ const MenuItemStyle = {
 }
 
 const MenuButtonStyle = {
-	position:"absolute" as "absolute",
-	background:primaryColorBlue,
+	position:"fixed" as "fixed",
+	background:"linear-gradient(160deg, #707070 0%, #26263D 100%)",
 	color:"white",
 	marginLeft:"-7px",
 	boxShadow:"none",
-	left: "20px",
+    left: "60px",
+    top: "95px",
+    width: "100px",
+    height: "100px",
+    borderRadius: "50px",
 }
 
 const StyledMenu = withStyles({
   paper: {
   	background:primaryColorBlue,
     border: '1px solid #d3d4d5',
+    borderRadius:"10px",
+    left:"50px",
   },
 })((props: MenuProps) => (
   <Menu
-    elevation={0}
+    elevation={1}
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
-      horizontal: 'center',
+      horizontal: 'left',
     }}
     transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
+      vertical: -10,
+      horizontal: 'left',
     }}
     {...props}
   />

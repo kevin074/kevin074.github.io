@@ -68,6 +68,7 @@ function Dot(props:DotProps) {
 	function dotClicked (id:string, color:null|'black'|'white' = null) {
 		if(isClicked || winner !== null ) return;
 
+		const initIdInvisbility = pointMap.readMap(id, "isVisible")
 		pointMap.setMapVisible(id, true);
 		pointMap.setMapColor(id, color || currentColor);
 		const idColor = pointMap.readMap(id, "color");
@@ -76,19 +77,12 @@ function Dot(props:DotProps) {
 		setIsClicked(pointMap.readMap(id,"isVisible"));
 		toggleColor();
 
-		if(getNeighbors(id).every( function (idKey:string) { 
-			return Object.keys(pointMap.readMap(id,"lives")).length > 1 && 
-						pointMap.readMap(idKey, "color") && 
-						pointMap.readMap(idKey, "color") !== idColor
-		})) {
+
+		if(!initIdInvisbility && !pointMap.readMap(id, "isVisible")) {
 			setWinner(idColor === 'black' ? 'white': 'black')
 			return;
 		}
 	}
-
-	React.useEffect(()=>{
-
-	})
 
 	return <div style={style} 
 			onMouseEnter={setIsHovered.bind(null, true)}

@@ -24,7 +24,7 @@ export default () => {
 			<MainView appBarValue={appBarValue}	/>
 		</main>
 
-		<Footer styleOverride={appBarValue === ARTICLE ? {background:primaryColorBlue}: {}}/>
+		<Footer/>
 	</Box>
 
 }

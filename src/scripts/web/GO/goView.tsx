@@ -54,15 +54,15 @@ export default function () {
 
 		<div style={{width:"100%", height:"calc(100vh - 51px)"}}>
 			<div className="infoContainer" style={InfoContainerStyle}>
-					<div style={{height:boardSize+"px"}}>
+					<div style={{height:boardSize+"px", padding: "0 2vw"}}>
 						<div style={{fontSize:"4vw", fontWeight:"bold", marginBottom:"30px"}}>Go (Board Game)</div>
 
 						<div style={ScoresStyle}>Turn: { dotColor }</div>
-						<div><button style={ButtonStyle}>pass</button></div>
+						<div style={{marginBottom:"30px"}}><button style={ButtonStyle} onClick={toggleDotColor}>pass</button></div>
 
-						<div>
-							<span style={ScoresStyle}>blacks: {blacksRemoved}</span>
-							<span style={ScoresStyle}>whites: {whitesRemoved}</span>
+						<div style={ScoresStyle}>
+							<span style={{marginRight:"50px"}}>blacks: {blacksRemoved}</span>
+							<span>whites: {whitesRemoved}</span>
 						</div>
 
 						<div>
@@ -71,7 +71,12 @@ export default function () {
 							<button style={ButtonStyle} type="button" onClick={setisCodeExpOpen.bind(null, true)}> Code Explain </button>
 						</div>
 
-						{winner ? <div>winner is: { winner }</div> : <div></div>}
+						{winner && 
+							<div style={WinnerContainer}> 
+								<div style={WinnerBlackDrop}></div>
+								<div style={WinnerDiv}> Winner Is: { winner }</div> 
+							</div> 
+						}
 					</div>
 			</div>
 
@@ -83,8 +88,41 @@ export default function () {
 	</ BoardContext.Provider> )
 }
 
+const WinnerBlackDrop = {
+	width:"100%",
+	height: "100%",
+	background:"black" as "black",
+	opacity:0.8
+}
+
+const WinnerContainer = {
+	width:  "100vw",
+	height: "30vh",
+	position: "fixed" as "fixed",
+	top: "50vh",
+	transform: "translate(0%, -50%)",
+	left:0,
+    zIndex: 99999,
+}
+
+const WinnerDiv = {
+	width:  "50vw",
+	height: "15vh",
+	position: "absolute" as "absolute",
+	top: "50%",
+	left: "50%",
+	transform: "translate(-50%, -50%)",
+	textAlign: "center" as "center",
+    zIndex: 99999,
+    background: "grey" as "grey",
+    color: "white" as "white",
+    lineHeight: "15vh",
+    fontSize: "5vh",
+    borderRadius:"15px",
+}
+
 const InfoContainerStyle = {
-	width:"48vw", 
+	width:"45vw", 
 	height:"100%", 
 	display:"inline-flex", 
 	verticalAlign:"top", 
@@ -92,10 +130,19 @@ const InfoContainerStyle = {
 	alignItems:"center"
 }
 
-const ScoresStyle = { fontSize:"2vw" };
+const ScoresStyle = { 
+	fontSize:"2vw",
+	marginBottom:"10px"
+};
 
 const ButtonStyle = {
 	fontSize:"2vw",
     border: "0",
 	background: "rgb(140,140,155)",
+	marginRight:"10px",
+	padding:"5px 15px",
+	borderRadius:"10px",
+	color:"white" as "white",
+	outline:"none" as "none",
+	cursor: "pointer" as "pointer",
 }

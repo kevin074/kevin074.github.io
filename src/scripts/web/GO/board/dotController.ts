@@ -49,6 +49,7 @@ export  function removeAndReAddLivesRecurr ( id:string, visited:{[key:string]: b
 	pointMap.setMapLeader(id, id);
 	pointMap.setMapLivesWhole(id, getNeighborsMap(id));
 	pointMap.setMapVisible(id, false);
+	
 	//	pointMap.setMapColor(id, null) was removed from this so that <Dot /> can have access of it for setState
 
 	Object.keys(pointMap.readMap(id, 'lives')).forEach(function(neighborId:string){
@@ -62,9 +63,9 @@ export  function removeAndReAddLivesRecurr ( id:string, visited:{[key:string]: b
 
 export function countLives ( id:string, pointMap:PointMap ) {
 	let stack = getNeighbors(id);
+
 	const idColor = pointMap.readMap(id, "color");
 	let idShifted = stack.shift();
-	let shiftDot = null;
 	const visited: {[key:string]: boolean} = {[id]: true};
 	let pointColor:null|"black"|"white" = null;
 	
