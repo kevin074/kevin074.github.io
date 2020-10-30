@@ -10,7 +10,7 @@ import EjectIcon from '@material-ui/icons/Eject';
 
 const cellNumber = 4;
 const boardSize = 200
-const {unitX, unitY} = getUnityXY(boardSize, boardSize, 1/cellNumber);
+const {unitX, unitY} = getUnityXY(boardSize, 1/cellNumber);
 
 const rule1:DotDataType[] = [
 	dotData(2,2,"black","","fadeOutLate"),

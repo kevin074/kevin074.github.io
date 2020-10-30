@@ -18,7 +18,7 @@ export default function () {
 		<section className="firstContainer" style={firstContainerStyle}>
 			<div className="introGreet" style={{ padding: "0 5vw", ...marginCenterVertical }}>
 				<div style={{fontSize:"4vw", marginBottom: "5vh"}}>Hi !</div>
-				<div style={{fontSize:"6vw"}}> I'm Kevin, a Frontend Developer from LA</div>
+				<div style={{fontSize:"6vw"}}> I'm Kevin, <br /> a Frontend Developer from LA</div>
 			</div>
 		</section>
 
@@ -57,8 +57,8 @@ export default function () {
 			</div>
 		</section>
 
-		<section className="thirdContainer" style={{height:"100vh"}}>
-			<div style={{display:"flex", justifyContent: "space-evenly", height: "50%", background:secondaryLightGrey}}>
+		<section className="thirdContainer" style={{height:"50vh"}}>
+			<div style={{display:"flex", justifyContent: "space-evenly", height: "100%", background:secondaryLightGrey}}>
 				<div style={footerColumns}>
 					<h4 style={h4Style}><SettingsIcon style={footerIconStyle}/>Skills</h4>
 					<FooterList>Frontend Development</FooterList>
@@ -76,48 +76,19 @@ export default function () {
 					<FooterList>Highcharts</FooterList>
 				</div>
 			</div>
-			<div style={bottomFooterStyle}>
-				<div style={{display:"flex", flexDirection:"column", justifyContent:"space-evenly"}}>
-					<FooterLinks href="https://www.linkedin.com/in/kevin-tseng-b1b46516/">LinkedIn</FooterLinks>
-					<FooterLinks href="https://github.com/kevin074/kevin074.github.io">GitHub</FooterLinks>
-					<FooterLinks href="https://dev.to/kevin074">Dev.to</FooterLinks>
-				</div>
-			</div>
 		</section>
 
 	</div>
 }
 
 function FooterList (props:any) {
-	return <div style={footerListStyle}>{props.children}</div>
-}
-
-function FooterLinks (props:any) {
-	return <Link 
-				style={Object.assign({},footerListStyle, {color:"white"})}
-				variant="body2"
-				target="_blank"
-				rel="noreferrer"
-				href={props.href}
-			>
-				{props.children}
-		</Link>
-}
-
-const bottomFooterStyle = {
-	height:"50vh",
-	background: "linear-gradient(90deg, #26263D 0%, #707070 100%)",
-	display:"flex",
-	justifyContent:"center",
+	return <div style={{marginBottom: "10px"}}>{props.children}</div>
 }
 
 const h4Style = {
 	marginBottom:"25px"
 }
 
-const footerListStyle = {
-	marginBottom: "10px"
-}
 
 const experienceContactStyle = {
 	marginTop:"20px"
@@ -149,8 +120,9 @@ const footerIconStyle = {
 }
 
 const firstContainerStyle = Object.assign( {}, sections, {
-	background:primaryColorBlue, 
+	background:"linear-gradient(166deg, rgba(38,39,59,1) 0%, rgba(166,170,233,1) 69%, rgba(154,202,242,0.82) 100%)", 
 	color:"white",
+	fontWeight:200,
 })
 
 

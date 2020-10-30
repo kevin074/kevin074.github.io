@@ -29,30 +29,73 @@ export default function () {
 	const [whitesRemoved, setWhitesRemoved] = React.useState<number>(0);
 	const [isRulesOpen, setIsRulesOpen] = React.useState<boolean>(false);
 	const [isCodeExpOpen, setisCodeExpOpen] = React.useState<boolean>(false);
+	const [boardSize, setBoardSize] = React.useState(720);
 
 	function toggleDotColor () { setDotColor( dotColor === 'black' ? 'white': 'black' ) }
-
 	function addBlacksRemoved () { setBlacksRemoved( prevState =>  prevState+1 )} 
 	function addWhitesRemoved () { setWhitesRemoved( prevState =>  prevState+1 )} 
 
+	function windowResizeCB () {
+		const availableSize = Math.min( window.innerWidth/2, window.innerHeight );
+		const size = availableSize - 20;
+		setBoardSize(size);
+	}
+
+	React.useLayoutEffect(function(){
+		window.addEventListener('resize', windowResizeCB);
+ 		windowResizeCB()
+
+ 	 	return window.removeEventListener.bind(null,'resize', windowResizeCB) 
+	}, [])
+
+
+
 	return ( <BoardContext.Provider value={{color: dotColor, toggleColor: toggleDotColor, winner, setWinner, addWhitesRemoved, addBlacksRemoved}}>
-		<div style={{width:"100%", height:"100%"}}>
-			{winner ? <div>winner is: { winner }</div> : <div></div>}
 
-			<div>Turn: { dotColor }</div>
-			<button>pass</button>
+		<div style={{width:"100%", height:"calc(100vh - 51px)"}}>
+			<div className="infoContainer" style={InfoContainerStyle}>
+					<div style={{height:boardSize+"px"}}>
+						<div style={{fontSize:"4vw", fontWeight:"bold", marginBottom:"30px"}}>Go (Board Game)</div>
 
-			<div>blacks: {blacksRemoved}</div>
-			<div>whites: {whitesRemoved}</div>
+						<div style={ScoresStyle}>Turn: { dotColor }</div>
+						<div><button style={ButtonStyle}>pass</button></div>
 
-			<button onClick={countEndGame.bind(null, pointMap, setWinner, blacksRemoved, whitesRemoved)}> End </button>
-			<button type="button" onClick={setIsRulesOpen.bind(null, true)}> Rules</button>
+						<div>
+							<span style={ScoresStyle}>blacks: {blacksRemoved}</span>
+							<span style={ScoresStyle}>whites: {whitesRemoved}</span>
+						</div>
+
+						<div>
+							<button style={ButtonStyle} type="button" onClick={countEndGame.bind(null, pointMap, setWinner, blacksRemoved, whitesRemoved)}> End </button>
+							<button style={ButtonStyle} type="button" onClick={setIsRulesOpen.bind(null, true)}> Rules</button>
+							<button style={ButtonStyle} type="button" onClick={setisCodeExpOpen.bind(null, true)}> Code Explain </button>
+						</div>
+
+						{winner ? <div>winner is: { winner }</div> : <div></div>}
+					</div>
+			</div>
+
+			<Board boardSize={boardSize}/>
+
 			<RulesModal open={isRulesOpen} onclose={setIsRulesOpen.bind(null, false)}/>
-
-			<button type="button" onClick={setisCodeExpOpen.bind(null, true)}> Code Explain </button>
 			<CodeExpModal open={isCodeExpOpen} onclose={setisCodeExpOpen.bind(null, false)}/>
-
-			<Board />
 		</div>
 	</ BoardContext.Provider> )
+}
+
+const InfoContainerStyle = {
+	width:"48vw", 
+	height:"100%", 
+	display:"inline-flex", 
+	verticalAlign:"top", 
+	justifyContent:"center", 
+	alignItems:"center"
+}
+
+const ScoresStyle = { fontSize:"2vw" };
+
+const ButtonStyle = {
+	fontSize:"2vw",
+    border: "0",
+	background: "rgb(140,140,155)",
 }

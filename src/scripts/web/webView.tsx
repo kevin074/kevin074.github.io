@@ -4,52 +4,27 @@
 import React from 'react';
 import { Box, AppBar, Tabs, Tab }  from '@material-ui/core';
 import Introductions from './home/introduction';
-import ArticleDisplay from './articles/aricleDisplay'
+import ArticleView from './articles/articlesView'
 import WorksView from './sampleWorks/worksView'
 import GOView from './GO/goView';
+import Footer from './footer'
+import Header from './header'
+import {HOME, ARTICLE, SAMPLE_WORKS, GO} from './webViewConstants'
 import {primaryColorBlue} from '../css/commonCss'
 
-const HOME = 'home';
-const ARTICLE = 'articles';
-const SAMPLE_WORKS = 'sort_algos';
-const GO = 'go_(board_game)';
-
-const pageOrder = [HOME, ARTICLE, SAMPLE_WORKS, GO]
-
-function toDisplayValue (string:string) {
-	return string
-		.split('_')
-		.map(function(str:string){ return str[0].toUpperCase() + str.substring(1) })
-		.join(' ');
-}
 
 export default () => { 
-	const [appBarValue, setAppBarValue] = React.useState(HOME);
-	
-	function returnHome () { setAppBarValue(HOME) }
-	
-	function setNewAppbarValue(event:React.ChangeEvent<HTMLElement>, value:string) {
-		setAppBarValue(event.target.innerText.split(" ").join("_").toLowerCase())
-	};
-
+	const [appBarValue, setAppBarValue] = React.useState(GO);
+		
 	return <Box className="webViewContainer" style={{width:"100%", height:"100%"}}>
-		<AppBar className="header" style={headerStyle}>
 
-			<span style={homeStyle} onClick={returnHome}> KEVIN TSENG </span>
+		<Header appBarValue={appBarValue} setAppBarValue={setAppBarValue}/>
 
-			<Tabs value={pageOrder.indexOf(appBarValue)-1} onChange={setNewAppbarValue} style={tabsStyle}> 
-				{pageOrder.map(function(page, index){
-					if(index ===0 ) return null
-					return <Tab key={page} label={toDisplayValue(page)} />	
-				})}
-			</Tabs>
-
-		</AppBar>
-
-
-		<main style={mainStyle}>
+		<main style={{marginTop:"51px"}}>
 			<MainView appBarValue={appBarValue}	/>
 		</main>
+
+		<Footer styleOverride={appBarValue === ARTICLE ? {background:primaryColorBlue}: {}}/>
 	</Box>
 
 }
@@ -57,31 +32,16 @@ export default () => {
 function MainView (props:{appBarValue:string}) {
 	
 	if (props.appBarValue === HOME) { 	 return  <Introductions /> }
-	if (props.appBarValue === ARTICLE) { return  <ArticleDisplay /> }
+	if (props.appBarValue === ARTICLE) { return  <ArticleView /> }
 	if (props.appBarValue === SAMPLE_WORKS) { return  <WorksView /> }
 	if (props.appBarValue === GO) { return  <GOView /> }
 
 	return  <Introductions />
 }
 
-const headerStyle ={
-	flexDirection: "row", 
-	justifyContent: "space-between", 
-	background:primaryColorBlue, 
-	boxShadow: "none"
-}
 const homeStyle = {
 	marginLeft: "30px", 
 	lineHeight:"51px", 
 	cursor:"pointer",
 	fontWeight:"bold",
-}
-
-const mainStyle = {
-	marginTop:"51px"
-}
-
-const tabsStyle = {
-	display:'inline-block',
-	marginRight: "30px"
 }
